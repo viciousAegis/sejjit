@@ -1,38 +1,85 @@
+
+:root {
+  --primary-color: rgb(197, 131, 203);
+  --primary-color-light: rgba(215, 178, 218, 0.5);
+  --primary-color-dark: rgba(170, 92, 177, 0.8);
+}
+
 .App {
-  text-align: center;
+  background-color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Auth-form {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form-content {
   display: flex;
   flex-direction: column;
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(2, 1, 1);
+}
+
+.img-container {
+  max-width: 420px !important;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding-left: 12%;
+  padding-right: 12%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: var(--primary-color);
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.top-bar-title {
+  font-size: 24px;
+  font-weight: 800;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* BOOTSTRAP OVERRIDES */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-primary:disabled {
+  background-color: var(--primary-color-light);
+  border-color: var(--primary-color-light);
+}
+.btn-primary:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
 }

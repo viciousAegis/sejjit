@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./App.css"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import Auth from "./Auth"
+import LoginScreen from "./Login"
+import ProtectedRoute from "./ProtectedRoute"
+import ProfilePage from "./Profile";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/login" element={<LoginScreen />} />
+        <Route path="/profile" element={<ProtectedRoute>
+          <ProfilePage />
+        </ProtectedRoute>}>
+        </Route>
+        <Route path='*' element={<Navigate to='/profile' replace />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
