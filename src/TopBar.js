@@ -18,7 +18,7 @@ export default function TopBar() {
 
     return (
         <div className="top-bar">
-            <h1 className="top-bar-title">GREDDIT</h1>
+            <h1 className="top-bar-title">SEJJIT</h1>
 
             {!isLoginPage && <button className="top-bar-button btn btn-outline-primary" onClick={handleLogout}>Logout</button>}
         </div>

@@ -22,12 +22,10 @@ export default function LoginScreen(props) {
     }
 
     const handleSubmit = async e => {
-        alert("Submitted")
         let res = checkAuth(username, password)
         if (res) {
             const user = {username, password}
             localStorage.setItem("user", JSON.stringify(user));
-            alert(user.username + " " + user.password)
             navigate("/profile")
         } else {
             alert("Invalid username or password")
@@ -123,7 +121,7 @@ export default function LoginScreen(props) {
             <div className="Auth-form-container">
                 <form className="Auth-form" onSubmit={handleSubmit}>
                     <div className="form-content">
-                        <h3 className="form-title">Sign In</h3>
+                        <h3 className="form-title">Sign Up</h3>
                         <div className="text-center">
                             Already registered?{" "}
                             <span className="link-primary" onClick={changeAuthMode}>

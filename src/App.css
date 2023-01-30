@@ -3,6 +3,18 @@
   --primary-color: rgb(197, 131, 203);
   --primary-color-light: rgba(215, 178, 218, 0.5);
   --primary-color-dark: rgba(170, 92, 177, 0.8);
+
+  /* CSS HEX */
+--blue: #2d00f7ff;
+--electric-indigo: #6a00f4ff;
+--violet-color-wheel: #8900f2ff;
+--purple-x-11: #a100f2ff;
+--purple-x-11-2: #b100e8ff;
+--electric-purple: #bc00ddff;
+--steel-pink: #d100d1ff;
+--steel-pink-2: #db00b6ff;
+--fashion-fuchsia: #e500a4ff;
+--magenta-process: #f20089ff;
 }
 
 .App {
