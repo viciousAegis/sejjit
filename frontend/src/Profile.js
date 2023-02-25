@@ -5,6 +5,161 @@ import React, { useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import TopBar from './TopBar';
 
+function UserInfo() {
+    return(
+        <div className="card-body">
+        <div className="row">
+            <div className="col-sm-4">
+                <p className="mb-0">Full Name</p>
+            </div>
+            <div className="col-sm-8">
+                <p className="text-muted mb-0">Johnatan Smith</p>
+            </div>
+        </div>
+        <hr />
+        <div className="row">
+            <div className="col-sm-4">
+                <p className="mb-0">Email</p>
+            </div>
+            <div className="col-sm-8">
+                <p className="text-muted mb-0">example@example.com</p>
+            </div>
+        </div>
+        <hr />
+        <div className="row">
+            <div className="col-sm-4">
+                <p className="mb-0">Phone</p>
+            </div>
+            <div className="col-sm-8">
+                <p className="text-muted mb-0">(097) 234-5678</p>
+            </div>
+        </div>
+        <hr />
+        <div className="row">
+            <div className="col-sm-4">
+                <p className="mb-0">Mobile</p>
+            </div>
+            <div className="col-sm-8">
+                <p className="text-muted mb-0">(098) 765-4321</p>
+            </div>
+        </div>
+        <hr />
+        <div className="row">
+            <div className="col-sm-4">
+                <p className="mb-0">Address</p>
+            </div>
+            <div className="col-sm-8">
+                <p className="text-muted mb-0">Bay Area, San Francisco, CA</p>
+            </div>
+        </div>
+    </div>
+    )
+}
+
+function FollowersCardPart(props) {
+    const handleShow = () => {
+        props.onChange(true);
+    }
+
+    return (
+        <div className="row justify-content-between">
+            <div className="col-4">
+                <p className='card-heading'>
+                    Followers
+                </p>
+            </div>
+            <div className="col-3 d-flex justify-content-center">
+                <button onClick={handleShow} className='btn follow-number'>
+                    1234
+                </button>
+            </div>
+        </div>
+    )
+}
+
+function FollowingCardPart(props) {
+    const handleShow = () => {
+        props.onChange(true);
+    }
+
+    return (
+        <div className="row justify-content-between">
+            <div className="col-4">
+                <p className='card-heading'>
+                    Following
+                </p>
+            </div>
+            <div className="col-3 d-flex justify-content-center">
+                <button onClick={handleShow} className='btn follow-number' >
+                    1234
+                </button>
+            </div>
+        </div>
+    )
+}
+
+function FollowerList(props) {
+
+    const handleClose = () => {
+        props.onChange(false);
+    }
+
+    return (
+        <div>
+            <div className="card">
+                <div className="card-header">
+                    <div className="row justify-content-between align-items-center">
+                        <div className="col-4 d-flex justify-content-center">
+                            <p className='card-heading'>
+                                Followers
+                            </p>
+                        </div>
+                        <div className="col-3 d-flex justify-content-center">
+                            <button className='btn btn-outline-primary close-button' onClick={handleClose}>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="card-body">
+                    lorem ipsom
+                </div>
+            </div>
+        </div>
+    )
+}
+
+function FollowingList(props) {
+
+    const handleClose = () => {
+        props.onChange(false);
+    }
+
+    return (
+        <div className="card">
+                <div className="card-header">
+                    <div className="row justify-content-between align-items-center">
+                        <div className="col-4 d-flex justify-content-center">
+                            <p className='card-heading'>
+                                Following
+                            </p>
+                        </div>
+                        <div className="col-3 d-flex justify-content-center">
+                            <button className='btn btn-outline-primary close-button' onClick={handleClose}>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="card-body">
+                    lorem ipsom
+                </div>
+            </div>
+    )
+}
+
 function Profile() {
 
     const [show, setShow] = useState(false);
@@ -17,135 +172,34 @@ function Profile() {
 
     return (
         <div className="container">
-            <div className="header container mt-4 p-3 rounded shadow">
-                <div className="row">
-                    <div className="col-12">
-                        <h1>Profile</h1>
-                    </div>
-                </div>
-                <hr />
-                <div className="row content-container align-items-center">
-                    <div className="img-container col-4 border border-4 shadow m-3 rounded border-info">
-                        <img className="card-img-top" src={require("./logo512.png")} />
-                    </div>
-                    <div className="col"></div>
-                    <div className="col-6 info-container m-3">
-                        <div className="row user-email">
-                            <div className="col">
-                                <h5>Username</h5>
-                                <span>admin</span>
-                            </div>
-                            <div className="col">
-                                <h5>Password</h5>
-                                <span>*******</span>
-                            </div>
+            <div className="row justify-content-center">
+                <div className="col-lg-6 d-flex justify-content-center align-self-center">
+                    <div>
+                        <div className='profile-highlight'>
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                            <span className='profile-name mb-3'>Akshit Sinha</span>
                         </div>
-                        <hr />
-                        <div className="row user-info">
-                            <div className="col">
-                                <h5>First Name</h5>
-                                <span>Admin</span>
-                            </div>
-                            <div className="col">
-                                <h5>Last Name</h5>
-                                <span>Admin</span>
-                            </div>
-                            <div className="col">
-                                <h5>Age</h5>
-                                <span>18</span>
-                            </div>
+                        <div className="card mb-4 profile-details">
+                            <UserInfo />
                         </div>
-                        <hr />
-                        <div className="row user-info2">
-                            <div className="col">
-                                <h5>Contact Number</h5>
-                                <span>1234567890</span>
-                            </div>
-                            <div className="col">
-                                <h5>Email</h5>
-                                <span>admin@admin.com</span>
+                        <div>
+                            <div className="card mb-4">
+                                <div className="card-body">
+                                    <FollowersCardPart show={show} onChange={handleShow} />
+                                    <hr />
+                                    <FollowingCardPart show={show1} onChange={handleShow1} />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="row" >
-                    <div className="col-4 offset-md-11">
-                        <button className="btn btn-primary">Edit</button>
+                <div className="col-lg-6 d-flex justify-content-center align-items-center">
+                    <div className='lists'>
+                        {show && <FollowerList show={show} onChange={handleClose} />}
+                        {show1 && <FollowingList show={show1} onChange={handleClose1} />}
                     </div>
                 </div>
             </div>
-
-            <div className="profile-container container mt-4 p-0">
-                <div className="row justify-content-center">
-                    <div className="col-4 rounded shadow p-3">
-                        <div className="row justify-content-center">
-                            <h1 className="col-12">Followers</h1>
-
-                            <button className="col-3 btn btn-outline-info btn-lg"
-                                onClick={handleShow}>439</button>
-                        </div>
-                    </div>
-                    <div className="col-4 rounded shadow p-3 offset-md-1">
-                        <div className="row justify-content-center">
-                            <h1 className="col-12">Following</h1>
-
-                            <button type="button" className="col-3 btn btn-outline-info btn-lg"
-                                onClick={handleShow1}>439</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <Modal show={show} onHide={handleClose} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>Followers</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="container">
-                        <ListGroup>
-                            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-                            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-                            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-                        </ListGroup>
-                    </div>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
-            <Modal show={show1} onHide={handleClose1} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>Following</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="container">
-                        <ListGroup>
-                            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-                            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-                            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-                        </ListGroup>
-                    </div>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose1}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose1}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
         </div>
     )
 }
@@ -154,7 +208,9 @@ export default function ProfilePage() {
     return (
         <div>
             <TopBar />
-            <Profile />
+            <div className="Page-container">
+                <Profile />
+            </div>
         </div>
     )
 }

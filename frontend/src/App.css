@@ -1,41 +1,78 @@
 
 :root {
-  --primary-color: rgb(197, 131, 203);
-  --primary-color-light: rgba(215, 178, 218, 0.5);
-  --primary-color-dark: rgba(170, 92, 177, 0.8);
-
   /* CSS HEX */
---blue: #2d00f7ff;
---electric-indigo: #6a00f4ff;
---violet-color-wheel: #8900f2ff;
---purple-x-11: #a100f2ff;
---purple-x-11-2: #b100e8ff;
---electric-purple: #bc00ddff;
---steel-pink: #d100d1ff;
---steel-pink-2: #db00b6ff;
---fashion-fuchsia: #e500a4ff;
---magenta-process: #f20089ff;
+  --yankees-blue: #232946;
+  --cameo-pink: #eebbc3;
+  --cameo-pink-dark: #dca0a8da;
+  --light-purple: #b8c1ec;
+
+  --background-color-main: var(--yankees-blue);
+  --foreground-color-main: var(--cameo-pink);
+  --card-color: var(--light-purple);
+  --text-main: #232946;
+  --text-white: #fffffe;
+  --btn-text: rgb(248, 162, 249);
+  --btn-text-light: rgb(254, 198, 255);
 }
 
-.App {
-  background-color: white;
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.fixed-top {
+  position: sticky;
+}
+
+.link-primary {
+  color: var(--cameo-pink) !important;
+  text-shadow: 0px 0px 1px var(--electric-indigo);
+}
+
+.link-primary:hover {
+  color: var(--electric-indigo) !important;
+  text-shadow: 0px 0px 1px var(--electric-indigo);
+}
+
+.main-body-s{
+  background-color: var(--background-color-main);
+}
+
+.Page-container {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.Page-container-login {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 
 .Auth-form-container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
 }
 
 .Auth-form {
   width: 420px;
-  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  box-shadow: var(--cameo-pink) 0px 0px 15px;
   padding-top: 30px;
   padding-bottom: 20px;
   border-radius: 8px;
   background-color: white;
+  transition: all 0.3s ease;
+}
+
+.Auth-form:hover {
+  width: 440px;
+  padding-top: 40px;
+  padding-bottom: 30px;
 }
 
 .form-content {
@@ -43,20 +80,43 @@
   flex-direction: column;
   padding-left: 12%;
   padding-right: 12%;
+  color: black !important;
 }
 
 .form-title {
   text-align: center;
-  margin-bottom: 1em;
   font-size: 24px;
-  color: rgb(34, 34, 34);
+  color: black;
   font-weight: 800;
+}
+
+.intro-paragraph {
+  width: 420px;
+  padding: 10px;
+  color: var(--light-purple);
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro-title {
+  color: #fffff0;
+  font-weight: 800;
+  font-size: 4rem;
+}
+
+.intro-title-highlight {
+  color: var(--cameo-pink);
+
 }
 
 label {
   font-size: 14px;
   font-weight: 600;
-  color: rgb(2, 1, 1);
+  color: black;
 }
 
 .img-container {
@@ -67,31 +127,127 @@ label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 12%;
-  padding-right: 12%;
+  background-color: var(--background-color-main);
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: var(--primary-color);
-  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: var(--foreground-color-main) 1px 2px 5px;
+  transition: all 0.3s ease;
+}
+
+.top-bar:hover {
+  box-shadow: var(--light-purple) 1px 2px 10px;
 }
 
 .top-bar-title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
-  color: white;
+  color: var(--foreground-color-main);
+  transition: all 0.3s ease;
 }
 
-/* BOOTSTRAP OVERRIDES */
-.btn-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+.top-bar-title:hover {
+  color: var(--light-purple);
+  text-shadow: 0px 0px 10px var(--light-purple);
 }
-.btn-primary:disabled {
-  background-color: var(--primary-color-light);
-  border-color: var(--primary-color-light);
+
+.top-bar-content {
+  color: var(--light-purple);
+  font-size: 16px;
+  font-weight: 600;
 }
-.btn-primary:hover {
-  background-color: var(--primary-color-dark);
-  border-color: var(--primary-color-dark);
+
+.top-bar-content:hover {
+  color: var(--light-purple);
+  text-shadow: 0px 0px 10px var(--light-purple);
+}
+
+.top-bar-btn {
+  color: var(--cameo-pink) !important;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.top-bar-btn:hover {
+  color: var(--light-purple) !important;
+  background-color: var(--background-color-main) !important;
+  box-shadow: var(--light-purple) 0px 0px 10px !important;
+}
+
+/* buttons */
+.btn {
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background-color: var(--foreground-color-main);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--foreground-color-main);
+  box-shadow: var(--cameo-pink-dark) 0px 0px 10px;
+}
+
+.btn:disabled {
+  background-color: var(--cameo-pink-dark);
+  cursor: not-allowed;
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  color: var(--cameo-pink);
+}
+
+.card {
+  width: 420px;
+  background-color: #fffffe;
+  box-shadow: black 0px 0px 5px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--light-purple) 0px 0px 15px;
+}
+
+.text-muted {
+  color: var(--text-main) !important;
+  font-weight: 500 !important;
+}
+
+.card-header {
+  background-color: var(--background-color-main);
+  color: var(--text-white);
+}
+
+.card-heading {
+  font-size: 1.3em;
+  font-weight: 800;
+
+}
+
+.card-body {
+  color: var(--text-main);
+  font-weight: 550;
+}
+
+.profile-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.profile-name {
+  font-size: 3em;
+  font-weight: 800;
+  color: var(--text-white);
+}
+
+.lists {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }

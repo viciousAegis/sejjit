@@ -12,7 +12,7 @@ const checkAuth = (username, value2) => {
     }
 }
 
-export default function LoginScreen(props) {
+function LoginForm(props) {
     let [authMode, setAuthMode] = useState("login")
 
     const navigate = useNavigate();
@@ -65,9 +65,6 @@ export default function LoginScreen(props) {
 
     if (authMode === "login") {
         return (
-            <div>
-                <TopBar loginPage={true}/>
-                <div className="Auth-form-container">
                     <form onSubmit={handleSubmit} className="Auth-form">
                         <div className="form-content">
                             <h2 className="form-title">Login</h2>
@@ -108,17 +105,12 @@ export default function LoginScreen(props) {
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
         )
     }
 
     let submit_bool = username.length > 0 && password.length > 0 && value3.length > 0 && value4.length > 0 && value5.length > 0 && value6.length > 0 && value7.length > 0
 
     return (
-        <div>
-            <TopBar />
-            <div className="Auth-form-container">
                 <form className="Auth-form" onSubmit={handleSubmit}>
                     <div className="form-content">
                         <h3 className="form-title">Sign Up</h3>
@@ -210,8 +202,35 @@ export default function LoginScreen(props) {
                         </div>
                     </div>
                 </form>
-            </div>
+    )
+}
+
+function IntroParagraph() {
+    return (
+        <div className="intro-paragraph ">
+            <h1 className="intro-title mb-4">Welcome to <span className="intro-title-highlight">Sejjit</span></h1>
+            <p className="intro-text">
+                Sejjit is a platform that allows you to connect with people around the world and share your ideas. build your own community and find others that spark your interest.
+            </p>
         </div>
     )
 }
 
+export default function LoginScreen () {
+    return (
+    <div>
+        <div className="Page-container-login">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-6 mb-2 d-flex justify-content-center">
+                        <IntroParagraph />
+                    </div>
+                    <div className="col-lg-6 mb-2 d-flex justify-content-center">
+                        <LoginForm />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    )
+}
