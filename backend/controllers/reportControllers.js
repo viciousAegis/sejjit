@@ -3,7 +3,7 @@ const User = require('../models/userModel');
 const Post = require('../models/postModel');
 const asyncHandler = require('express-async-handler');
 const Sub = require('../models/subModel');
-
+const sendMail = require('../utils/sendMail');
 const createReport = asyncHandler(async (req, res) => {
     const reported_by_id = req.user._id;
     const post_id = req.params.id;
@@ -135,6 +135,11 @@ const blockUser = asyncHandler(async (req, res) => {
             { $pull: { followers: user_id } }
         );
     }
+    // send a mail to the reporter about the action taken
+    await sendMail(req, res, report.reported_by, sub_id, report.post, report, 'u', 'b')
+
+    // send a mail to the reported user about the action taken
+    await sendMail(req, res, user_id, sub_id, report.post, report, 'r', 'b')
 
     const update = await Sub.updateOne(
         { _id: sub_id },
@@ -186,12 +191,17 @@ const ignoreReport = asyncHandler(async (req, res) => {
         throw new Error('You are not authorized to ignore reports');
     }
 
+    // send a mail to the reporter about the action taken
+    await sendMail(req, res, report.reported_by, report.sub, report.post, report, 'u', 'i')
+
     const update = await Report.updateOne(
         { _id: req.params.id },
         { $push: { status: 'ignored' } }
     );
 
     if (update) {
+
+
         res.json({
             message: 'Report ignored',
             report: report._id,
@@ -236,6 +246,7 @@ const deleteReport = asyncHandler(async (req, res) => {
         throw new Error('Report not deleted');
     }
 });
+
 
 module.exports = {
     createReport,

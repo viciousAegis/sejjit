@@ -24,8 +24,8 @@ const Report = ({ report, setReportSuccess, setReportError, setLoadingReports })
     const [disableBlock, setDisableBlock] = useState(report.status.includes("blocked"));
     const [disableButtons, setDisableButtons] = useState(report.status.includes("ignored"));
 
-    const deleteReportHandler = (report_id, post_id) => {
-        dispatch(deletePost(post_id));
+    const deleteReportHandler = (reporter_id, post_id) => {
+        dispatch(deletePost(post_id, reporter_id));
     };
 
     const blockUserHandler = (sub_id, user_id, report_id) => {
@@ -147,7 +147,7 @@ const Report = ({ report, setReportSuccess, setReportError, setLoadingReports })
                     <Button variant="danger"
                         disabled={disableButtons}
                         onClick={() => {
-                            deleteReportHandler(report._id, report.post);
+                            deleteReportHandler(report.reported_by, report.post);
                         }}
                     >
                         Delete Post

@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    container_name: backend_container
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/backend
+      - /Users/akshitsinha3/Library/CloudStorage/OneDrive-InternationalInstituteofInformationTechnology/2-2/DASS/Assigmnent1/sejjit/backend/node_modules
+  frontend:
+    build: ./frontend
+    container_name: frontend_container
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/frontend
+      - /Users/akshitsinha3/Library/CloudStorage/OneDrive-InternationalInstituteofInformationTechnology/2-2/DASS/Assigmnent1/sejjit/frontend/node_modules
+    stdin_open: true
+    tty: true

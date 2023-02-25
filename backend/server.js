@@ -20,7 +20,7 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 4000;
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('server started on port 4000');
 })
 
 app.listen(PORT, () => {

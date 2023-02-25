@@ -3,12 +3,15 @@ const Sub = require('../models/subModel');
 const User = require('../models/userModel');
 const asyncHandler = require('express-async-handler');
 const Report = require('../models/reportModel');
+const sendMail = require('../utils/sendMail');
 
 const removeBannedWords = (post, sub) => {
     let postContent = post.content.split(' ');
+    let postContent_copy = postContent;
     postContent = postContent.map(word => word.replace(/[^a-zA-Z0-9]/g, '').toLowerCase());
 
     let postTitle = post.title.split(' ');
+    let postTitle_copy = postTitle;
     postTitle = postTitle.map(word => word.replace(/[^a-zA-Z0-9]/g, '').toLowerCase());
 
     console.log(sub.banned_words);
@@ -21,13 +24,13 @@ const removeBannedWords = (post, sub) => {
         if (bannedWords.includes(postContent[j])) {
             newPostContent.push('****');
         } else {
-            newPostContent.push(postContent[j]);
+            newPostContent.push(postContent_copy[j]);
         }
 
         if (bannedWords.includes(postTitle[j])) {
             newPostTitle.push('****');
         } else {
-            newPostTitle.push(postTitle[j]);
+            newPostTitle.push(postTitle_copy[j]);
         }
     }
 
@@ -316,6 +319,8 @@ const getSavedPosts = asyncHandler(async (req, res) => {
 const deletePost = asyncHandler(async (req, res) => {
     const post = await Post.findById(req.params.id);
 
+    const { reporter_id } = req.body;
+
     if (!post) {
         res.status(400);
         throw new Error('Post does not exist');
@@ -342,6 +347,11 @@ const deletePost = asyncHandler(async (req, res) => {
             await Report.deleteOne({ _id: report._id });
         });
     }
+    // send a notification to the user that reported the post
+    await sendMail(req, res, reporter_id, post.sub, post._id, null, 'u', 'd')
+
+    // send a notification to the user that posted the post
+    await sendMail(req, res, post.posted_by, post.sub, post._id, null, 'r', 'd')
     
     const update = await Post.deleteOne({ _id: req.params.id });
 
@@ -349,6 +359,7 @@ const deletePost = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Update failed');
     }
+
 
     res.json({
         message: 'Post deleted'

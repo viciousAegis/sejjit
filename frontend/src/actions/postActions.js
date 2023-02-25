@@ -218,7 +218,7 @@ export const getSavedPosts = () => async (dispatch, getState) => {
     }
 }
 
-export const deletePost = (id) => async (dispatch, getState) => {
+export const deletePost = (id, reporter_id) => async (dispatch, getState) => {
     try {
         dispatch({ type: DELETE_POST_REQUEST });
 
@@ -234,6 +234,7 @@ export const deletePost = (id) => async (dispatch, getState) => {
 
         const {data} =  await axios.delete(
             `http://127.0.0.1:4000/api/posts/delete/${id}`,
+            {reporter_id: reporter_id},
             config
         )
 
