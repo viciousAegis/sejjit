@@ -12,6 +12,20 @@ import ReportsPage from "./modPages/ReportsPage";
 const NavBar = ({ sub, pageToShow, setPageToShow }) => {
     const [selectedPage, setSelectedPage] = useState("Users");
 
+
+    // update pageToShow
+    useEffect(() => {
+        if (pageToShow === "users") {
+            setSelectedPage("Users");
+        } else if (pageToShow === "joining requests") {
+            setSelectedPage("Joining Requests");
+        } else if (pageToShow === "reports") {
+            setSelectedPage("Reports");
+        } else if (pageToShow === "stats") {
+            setSelectedPage("Stats");
+        }
+    }, [pageToShow]);
+
     const clickHandle = (name) => {
         setPageToShow(name.toLowerCase());
         setSelectedPage(name);
@@ -100,6 +114,37 @@ export default function SubModPage() {
             setSub(subData.sub);
         }
     }, [subData, update]);
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            switch (event.key) {
+                case "u":
+                    console.log("You pressed the 'u' key");
+                    setPageToShow("users");
+                    break;
+                case "j":
+                    console.log("You pressed the 'j' key");
+                    setPageToShow("joining requests");
+                    break;
+                case "s":
+                    console.log("You pressed the 's' key");
+                    setPageToShow("stats");
+                    break;
+                case "r":
+                    console.log("You pressed the 'r' key");
+                    setPageToShow("reports");
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
 
     return (
         <div>
